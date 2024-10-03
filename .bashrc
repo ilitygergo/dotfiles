@@ -4,6 +4,24 @@ alias l='ls -l --color'
 alias ll='ls -la --color'
 alias cl='clear && printf "\e[3J"'
 
+# git command
+alias st='git status'
+alias pl='git pull'
+alias br='git branch -r'
+alias ci='git branch -a | fzf | xargs git checkout'
+alias ciD='git branch -a | fzf | xargs git branch -D'
+
+# python
+alias py='python3'
+alias pip='pip3'
+alias venv='source ./.venv/bin/activate'
+alias de='deactivate'
+alias test='py -m pytest ./tests'
+alias cov='coverage run -m pytest tests'
+
+# tmux shorthand
+alias t='tmux'
+
 # lf
 export LF_CONFIG_HOME=~/.config/
 
