@@ -1,0 +1,57 @@
+set hidden true
+set ignorecase true
+
+# Custom functions
+# ============================================================
+cmd mkdir ${{
+  printf "Directory name:"
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  prinf "File name:"
+  read ans
+  touch $ans
+}}
+
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.deb) dpkg-deb -x "$f" .;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd install ${{
+  sudo dpkg -i "$f"
+}}
+
+cmd lazygit_run ${{
+  lazygit
+}}
+
+cmd quitcd ${{
+	echo "1" > "$LF_SHELLCD_TEMPDIR/changecwd"
+	lf -remote "send $id quit"
+}}
+
+# Unset default keybindings
+# ============================================================
+map m
+map d
+map q
+
+# Mappings
+# ============================================================
+map . set hidden!
+map x cut
+map mf mkfile
+map md mkdir
+map q quitcd
+map dD $IFS=':'; rm -rf $fx
+map u unarchive
+map i install
